@@ -66,7 +66,7 @@ function buildCharts(sample) {
     (sample) => sample.id == sample);
 
   var specSamp = specSampArr[0];
-
+  console.log(specSamp)
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var ids = specSamp.otu_ids;
