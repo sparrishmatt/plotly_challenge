@@ -51,7 +51,33 @@ function buildMetadata(sample) {
     });
 
   });
-}
+
+  var gaugeData = [{
+    domain: { x: [0, 1], y: [0, 3] },
+    value: result.wfreq,
+    text: result.wfreq,
+    title: { text: "Washing Frequency Per Week" },
+    type: "indicator",
+    mode: "gauge+number",
+    gauge: { axis: { range: [null, 9] },
+             steps: [
+              { range: [0,2]},
+              { range: [2,4]},
+              { range: [4,6]},
+              { range: [6,8]},
+              { range: [8,10]}
+             ] 
+   }
+
+  }];
+
+  var gaugeLayout = {
+    width: 300,
+    height: 300
+  };
+
+  plotly.newplot("gauge", gaugeData, gaugeLayout);
+};
 
 // 1. Create the buildCharts function.
 function buildCharts(sample) {
@@ -63,9 +89,9 @@ function buildCharts(sample) {
         //  5. Create a variable that holds the first sample in the array.
 
   var specSampArr = samples.filter(
-    (sample) => sample.id == sample);
+    (sampleobject) => sampleobject.id == sample);
 
-  var specSamp = specSampArr[0];
+  var specSamp = specSampArr[0]
   console.log(specSamp)
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
@@ -94,5 +120,28 @@ function buildCharts(sample) {
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar",barData,barLayout);
+
+    // 1. Create the trace for the bubble chart.
+    var bubbleData = [{
+      x: ids,
+      y: value,
+      text: labels,
+      mode: "markers",
+      marker: {
+        color: ids,
+        size: value
+      },
+  }];
+
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+      xaxis: {title: "OTU ID"},
+      hovermode: "closest",
+      automargin: true
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
   });
 }
+ 
