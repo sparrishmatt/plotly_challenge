@@ -63,7 +63,7 @@ function buildCharts(sample) {
         //  5. Create a variable that holds the first sample in the array.
 
   var specSampArr = samples.filter(
-    (sample) => sample.id == sample);
+    (sampleobject) => sampleobject.id == sample);
 
   var specSamp = specSampArr[0];
   console.log(specSamp)
