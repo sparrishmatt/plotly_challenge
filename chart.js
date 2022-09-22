@@ -38,6 +38,8 @@ function buildMetadata(sample) {
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
     var result = resultArray[0];
 
+    var wfreq = parseFloat(result.wfreq)
+
     console.log(result)
     // Use d3 to select the panel with id of `#sample-metadata`
     var PANEL = d3.select("#sample-metadata");
@@ -56,8 +58,8 @@ function buildMetadata(sample) {
 
   var gaugeData = [{
     domain: { x: [0, 1], y: [0, 3] },
-    value: result.wfreq,
-    text: result.wfreq,
+    value: wfreq,
+    text: wfreq,
     title: { text: "Washing Frequency Per Week" },
     type: "indicator",
     mode: "gauge+number",
